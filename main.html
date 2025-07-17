@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Your Product Now!</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    
+    <form id="form">
+        <h1 id="formTitle">Add new Product</h1>
+        <div id="labels">
+            <label for="name" id="nameLabel">Name:</label>
+            <input type="text" id="name" placeholder="Product Name" required><br>
+            <label for="price" id="priceLabel">Price:</label>
+            <input type="number" id="price" placeholder="Price" required><br>
+            <label for="desc" id="descLabel">Desciption:</label>
+            <textarea id="desc"  rows="10" cols="55" type="text" required></textarea><br>
+            <div id="container">
+                <label for="category" id="categLabel">Category:</label>
+                <select name="" id="category" required>
+                    <option value="null"></option>
+                    <option value="dell"> Dell</option>
+                    <option value="samsung">Samsung</option>
+                    <option value="lenovo">Lenovo</option>
+                    <option value="apple">Apple</option>
+                </select>
+                <input type="checkbox" id="available">
+                <label for="checkbox">Available</label><br>
+            </div>
+        </div>
+        <input type="submit" id="addBtn" value="Add Product">
+        <input type="submit" id="updateBtn" value="Update Product">     
+    </form>
+    <div id="searchDiv">
+        <input type="text" id="searchBar" placeholder="Search product name or category..">
+        <!-- <input type="submit" id="searchBtn" value="Search"> -->
+        <select  id="categFilter">
+            <option value="null">Filter By Category</option>
+            <option value="dell">Dell</option>
+            <option value="samsung">Samsung</option>
+            <option value="lenovo">Lenovo</option>
+            <option value="apple">Apple</option>
+        </select>
+        <input type="submit" id="filterBtn" value="Filter Products">
+    </div>
+    <div id="tableDiv">
+        <table id="table"></table>
+        <h3 id="msg"></h3>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

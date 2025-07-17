@@ -1,0 +1,67 @@
+*{
+  font-family: system-ui;
+}
+table, td {
+  border: 1px solid black;
+}
+#form{
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 5px solid rgba(225, 225, 225, .2);
+  border-radius: 30px;
+  justify-self: center;
+  justify-content: center;
+  text-align: center;
+  width: 35%;
+  height: 60%;
+  margin-top: 5%;
+}
+#content{
+  border-radius: 10px;
+}
+#updateBtn{
+  display: none;
+}
+#name, #price{
+  border-radius: 50px;
+  padding: 10px;
+  padding-left: 25px;
+  font-size: 16px;
+  width: 55%;
+  margin: 15px;
+  margin-left: 25px;
+}
+
+textarea {
+  max-width: 100%;
+  margin-right: 10px;
+}
+label{
+  font-size: 18px;
+}
+#nameLabel, #priceLabel{
+  margin-right: 40px;
+}
+#descLabel{
+  padding-right: 23px;
+}
+#categLabel{
+  padding-right: 35px;
+  padding-left: 10px;
+}
+#container{
+  margin: 22px;
+}
+#category{
+  width: 45%;
+
+}
+#addBtn{
+  font-size: 18px;
+  font-weight: bold;
+  border: 1px solid rgba(225, 225, 225, .2);
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 10px;
+  width: 40%;
+  
+}
