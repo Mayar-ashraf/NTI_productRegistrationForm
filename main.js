@@ -1,7 +1,21 @@
 var form = document.getElementById('form');
 var table = document.getElementById('table');
 var products = [];
-
+const productsKey = "products";
+var saved = localStorage.getItem(productsKey);
+if (saved) {
+  let savedProducts = JSON.parse(saved);
+  console.log(savedProducts);
+  displayProducts(savedProducts);
+}else{
+    console.log("local storage is empty");
+    
+}
+function updateLocalStorage(){
+    localStorage.clear();
+    localStorage.setItem(productsKey, JSON.stringify(products));
+    console.log("Local Storage Updated successfully");
+}
 function areValidFields() {
     var pdtName = document.getElementById('name');
     var pdtDesc = document.getElementById('desc');
@@ -81,7 +95,8 @@ function displayProducts(array){
             pdtDesc.className = "wideCol";
 
             if(!available){
-                row.style.backgroundColor = "darkgray";
+                row.style.backgroundColor = "darkslategrey";
+                row.style.color = "white";
             }
             let editBtn = document.createElement('button');
             editBtn.innerText = "Edit";
@@ -122,6 +137,7 @@ function displayProducts(array){
                         product.desc = updatedDesc;
                         product.category = updatedCateg;
                         product.available = updatedAvail;
+                        updateLocalStorage();
                         displayProducts(array);
                         document.getElementById('formTitle').innerText = "Add new Product";
                         document.getElementById('addBtn').style.display = "inline";
@@ -138,6 +154,7 @@ function displayProducts(array){
                 console.log("Delete button event listener for product number ", array.indexOf(product) + 1);
                 if(confirm(`Are you sure you want to delete the product "${name}"?`)){
                     array.splice(array.indexOf(product), 1);
+                    updateLocalStorage();
                     displayProducts(array);
                 }
             });
@@ -146,42 +163,8 @@ function displayProducts(array){
 
     
 }
-document.getElementById('addBtn').addEventListener('click', function (event) {
-    event.preventDefault();
-
-    if(areValidFields()){
-        console.log(products.length);
-        if (products.length == 0) {
-            // create table
-            
-
-        }
-        var pdtName = document.getElementById('name');
-        var pdtPrice = document.getElementById('price');
-        var pdtDesc = document.getElementById('desc');
-        var pdtCateg = document.getElementById('category');
-        var isAvailable = document.getElementById('available');
-
-        console.log("is Aval valueee", isAvailable.checked);
-        
-        var product = {
-            name : pdtName.value,
-            price : pdtPrice.value,
-            desc : pdtDesc.value,
-            category : pdtCateg.value,
-            available : isAvailable.checked
-        };
-        products.unshift(product); // add new product to first of array
-        displayProducts(products);
-        alert('Product added successfully!');
-        emptyTextFields();
-    } 
-
-});
-document.getElementById('searchBar').addEventListener('blur', function(event){
-    event.preventDefault();
-    console.log("Entered Here");
-    if(document.getElementById('searchBar').value == ''){ // Search Bar is Empty
+function search(){
+        if(document.getElementById('searchBar').value == ''){ // Search Bar is Empty
 
         displayProducts(products);
 
@@ -220,6 +203,52 @@ document.getElementById('searchBar').addEventListener('blur', function(event){
         var msg = document.getElementById('msg'); 
         msg.innerText = "No Products Available";
     }
+}
+document.getElementById('addBtn').addEventListener('click', function (event) {
+    event.preventDefault();
+
+    if(areValidFields()){
+        console.log(products.length);
+        if (products.length == 0) {
+            // create table
+            
+
+        }
+        var pdtName = document.getElementById('name');
+        var pdtPrice = document.getElementById('price');
+        var pdtDesc = document.getElementById('desc');
+        var pdtCateg = document.getElementById('category');
+        var isAvailable = document.getElementById('available');
+
+        console.log("is Aval valueee", isAvailable.checked);
+        
+        var product = {
+            name : pdtName.value,
+            price : pdtPrice.value,
+            desc : pdtDesc.value,
+            category : pdtCateg.value,
+            available : isAvailable.checked
+        };
+        products.unshift(product); // add new product to first of array
+        updateLocalStorage();
+        displayProducts(products);
+        alert('Product added successfully!');
+        emptyTextFields();
+    } 
+
+});
+document.getElementById('searchBar').addEventListener('blur', function(event){
+    event.preventDefault();
+    search();
+    console.log("Entered Here");
+});
+
+document.getElementById('searchBar').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        console.log('Enter key pressed');
+        event.preventDefault();
+        search();
+    }
 });
 document.getElementById('filterBtn').addEventListener('click', function(){
     var categFilter = document.getElementById('categFilter').value;
@@ -228,6 +257,7 @@ document.getElementById('filterBtn').addEventListener('click', function(){
     var filteredPdts = [];
     if(categFilter == "null"){
         alert("Please choose a valid Category");
+        displayProducts(products);
     }else if(products.length){
         products.forEach(function(product){
             if(categFilter == product.category){

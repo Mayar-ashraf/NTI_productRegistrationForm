@@ -1,6 +1,30 @@
 *{
   font-family: system-ui;
 }
+body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  } 
+.background {
+  background-image: url("background.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(3px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  position: relative;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.2); /* Optional transparency */
+  backdrop-filter: blur(8px); /* Optional blur to make content area frosted */
+}
+
 table, td {
   border: 1px solid black;
   justify-self: center;
@@ -23,7 +47,6 @@ td{
 }
 
 tr:nth-child(even) {background-color: #f2f2f2;}
-tr:hover {background-color:cadetblue;}
 
 #form{
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -35,6 +58,8 @@ tr:hover {background-color:cadetblue;}
   width: 35%;
   height: 70%;
   margin-top: 3%;
+  backdrop-filter: blur(80px);
+   background-color: rgba(0, 0, 0, 0.05);
 }
 #content{
   border-radius: 10px;
@@ -50,6 +75,7 @@ tr:hover {background-color:cadetblue;}
   width: 55%;
   margin: 15px;
   margin-left: 25px;
+  border: none;
 }
 
 textarea {
@@ -57,6 +83,7 @@ textarea {
   margin-right: 10px;
   padding: 10px;
   font-size: 16px;
+  border: none;
 }
 label{
   font-size: 18px;
@@ -90,6 +117,7 @@ label{
   margin-top: 20px;
   padding: 10px;
   width: 40%;
+  background-color: lightgray;
   color: black; 
 }
 #addBtn:hover {
@@ -114,6 +142,7 @@ label{
 #searchBar, #filterBtn, #categFilter{
   padding: 10px;
   border-radius: 20px;
+  border-color: lightgray;
 }
 #filterBtn{
   font-size: 15px;
@@ -123,8 +152,9 @@ label{
   margin: 10px;
   margin-top: 20px;
   padding: 10px;
-  width: 10%;
+  width: 8%;
   color: black; 
+  background-color: lightgray;
 }
 #filterBtn:hover{
   background-color: darkgray;
@@ -148,4 +178,5 @@ label{
 .actions:hover{
   background-color: darkgray;
   color: white;
+  border: none;
 }
