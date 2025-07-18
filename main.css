@@ -21,8 +21,8 @@ body{
 .content {
   position: relative;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.2); /* Optional transparency */
-  backdrop-filter: blur(8px); /* Optional blur to make content area frosted */
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
 }
 
 table, td {
