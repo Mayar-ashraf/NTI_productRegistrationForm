@@ -57,6 +57,8 @@ function displayProducts(array){
         categCell.innerText = "Category";
         isAvailCell.innerText = "Availability";
         actionsCell.innerText = "Actions";
+        
+        descCell.className = "wideCol";
 
         array.forEach( function (product){
             
@@ -76,12 +78,19 @@ function displayProducts(array){
             pdtCateg.innerText = category;
             pdtIsAvail.innerText = available;
 
+            pdtDesc.className = "wideCol";
+
+            if(!available){
+                row.style.backgroundColor = "darkgray";
+            }
             let editBtn = document.createElement('button');
             editBtn.innerText = "Edit";
+            editBtn.className = "actions";
             pdtActions.appendChild(editBtn);
 
             let deleteBtn = document.createElement('button');
-            deleteBtn.innerText = "Delete"
+            deleteBtn.innerText = "Delete";
+            deleteBtn.className = "actions";
             pdtActions.appendChild(deleteBtn);
 
             editBtn.addEventListener('click', function () {
@@ -200,6 +209,11 @@ document.getElementById('searchBar').addEventListener('blur', function(event){
             console.log("No Matchings");
             var msg = document.getElementById('msg'); 
             msg.innerText = "No Matchings Found";
+            let tbody = document.querySelector('tbody');
+            if(tbody){
+                table.removeChild(tbody);
+                console.log("Old table deleted");
+            }
 
         }       
     }else{
@@ -224,9 +238,14 @@ document.getElementById('filterBtn').addEventListener('click', function(){
         if(filteredPdts.length){
             displayProducts(filteredPdts);
         }else{
+            let tbody = document.querySelector('tbody');
+            if(tbody){
+                table.removeChild(tbody);
+                console.log("Old table deleted");
+            }
             console.log("No Matchings");
             var msg = document.getElementById('msg'); 
-            msg.innerText = "No Matchings Found";
+            msg.innerText = `No Matchings Found for "${categFilter}"`;
         }
 
     }else{
@@ -235,5 +254,9 @@ document.getElementById('filterBtn').addEventListener('click', function(){
     }
     
     
-})
+});
+
+document.getElementById('availLabel').addEventListener('click', function(){
+    document.getElementById('available').checked = !document.getElementById('available').checked; 
+});
 
